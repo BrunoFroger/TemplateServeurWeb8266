@@ -7,7 +7,6 @@
 
 #include "serveurWeb.hpp"
 // Créez un serveur sur le port 80
-// ESP8266WebServer ServeurWeb::server(80);
 ESP8266WebServer server(80);
 
 // Fonction pour gérer la page d'accueil
@@ -22,27 +21,12 @@ void handleRoot() {
     String html = "<html><body><h1>Hello from ESP8266!</h1><p>Page d'accueil du serveur web.</p></body></html>";
     server.send(200, "text/html", html);
 }
+
 void serveurWebInit(){
     Serial.println("Initialisation du serveur web...");
-    // ESP8266WebServer(80);
-    // ESP8266WebServer server(80);
-    // Définir les routes
-    // server.on("/", [this]() { this->handleRoot(); });
     server.on("/", handleRoot);
 
     // Démarrer le serveur
     server.begin();
     Serial.println("Serveur web démarré");
 };
-
-// // Fonction pour gérer la page d'accueil
-// void ServeurWeb::handleClient() {
-//     // Serial.println("Gestion des clients...");
-//     server.handleClient();
-// }
-
-// // Fonction pour gérer la page d'accueil
-// void ServeurWeb::handleRoot() {
-//   String html = "<html><body><h1>Hello from ESP8266!</h1><p>Page d'accueil du serveur web.</p></body></html>";
-//   server.send(200, "text/html", html);
-// }

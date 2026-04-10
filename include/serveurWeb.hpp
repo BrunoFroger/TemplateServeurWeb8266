@@ -15,14 +15,5 @@
     extern ESP8266WebServer server;
     extern void serveurWebInit(void);
     extern void serveurWebHandleClient(void);
-    // class ServeurWeb {
-    //     public:
-    //         void init();
-    //         void handleClient(void);
-
-    //     private:
-    //         ESP8266WebServer server(80);
-    //         void handleRoot(void);
-    // };
 
 #endif

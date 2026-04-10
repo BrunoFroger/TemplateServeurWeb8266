@@ -23,22 +23,6 @@ void setup() {
     Serial.begin(460800);
     routeurWifiInit(localWifiSsid, localWifiPwd);
     serveurWebInit();
-
-//   // Connexion au Wi-Fi
-//   WiFi.begin(localWifiSsid, localWifiPwd);
-//   while (WiFi.status() != WL_CONNECTED) {
-//     delay(1000);
-//     Serial.println("Connexion en cours...");
-//   }
-//   Serial.println("Connecté au Wi-Fi : " + WiFi.SSID());
-//   Serial.println("adresse IP : " + WiFi.localIP().toString());
-  
-//   // Définir les routes
-//   server.on("/", handleRoot);
-  
-//   // Démarrer le serveur
-//   server.begin();
-//   Serial.println("Serveur web démarré");
 }
 
 // --------------------------------
@@ -47,7 +31,6 @@ void setup() {
 //
 // --------------------------------
 void loop() {
-//   routeurWifiHandleClient();
   serveurWebHandleClient();
 }
 
