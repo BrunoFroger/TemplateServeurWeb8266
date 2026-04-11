@@ -10,9 +10,7 @@
 #include "routeurWifi.hpp"
 #include "serveurWeb.hpp"
 #include "erreurs.h"
-
-
-
+#include "sdCard.hpp"
 
 // --------------------------------
 //
@@ -23,6 +21,7 @@ void setup() {
     Serial.begin(460800);
     routeurWifiInit(localWifiSsid, localWifiPwd);
     serveurWebInit();
+    sdcardInit();
 }
 
 // --------------------------------
