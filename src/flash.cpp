@@ -6,6 +6,8 @@
 #include <Arduino.h>
 #include <LittleFS.h> 
 
+#define __DEBUG__FLASH__
+
 void listDir() {
   Serial.println("Liste des fichiers:");
 
@@ -32,6 +34,9 @@ void flashInit(void){
 String flashFileRead (const char *filename){
     String buffer = "";
     File file;
+    #ifdef __DEBUG__FLASH__
+        Serial.println("lecture en flash du fichier : " + String(filename));
+    #endif
     file = LittleFS.open(filename, "r");
     if (!file || file.isDirectory()) {
         Serial.println("...echec de la lecture...ce fichier existe-t-il?");
@@ -39,6 +44,11 @@ String flashFileRead (const char *filename){
         while (file.available()) {
             buffer += char(file.read());
         }
+        #ifdef __DEBUG__FLASH__
+            Serial.println("------------------------------------");
+            Serial.println(buffer);
+            Serial.println("------------------------------------");
+        #endif
     }
     return buffer;
 }

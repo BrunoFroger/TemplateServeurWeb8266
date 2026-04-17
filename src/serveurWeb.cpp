@@ -11,7 +11,7 @@
 // Créez un serveur sur le port 80
 ESP8266WebServer server(80);
 
-// Fonction pour gérer la page d'accueil
+// Fonction pour gérer les requetes au serveur
 void serveurWebHandleClient() {
     // Serial.println("Gestion des clients...");
     server.handleClient();
@@ -25,9 +25,30 @@ void handleRoot() {
     server.send(200, "text/html", html);
 }
 
+void handleStyleCss() {
+    Serial.println("Affichage de la page de style");
+    String html = flashFileRead("style.css");
+    server.send(404, "text/html", html);
+}
+
+void handleMainJs() {
+    Serial.println("Affichage de la page main.js");
+    String html = flashFileRead("main.js");
+    server.send(404, "text/html", html);
+}
+
+void handleFilenotFound() {
+    Serial.println("Affichage de la page not found");
+    String html = flashFileRead("pageNotFound.html");
+    server.send(404, "text/html", html);
+}
+
 void serveurWebInit(){
     Serial.println("Initialisation du serveur web...");
     server.on("/", handleRoot);
+    server.on("/style.css", handleStyleCss);
+    server.on("/main.js", handleMainJs);
+    server.onNotFound(handleFilenotFound);
 
     // Démarrer le serveur
     server.begin();
