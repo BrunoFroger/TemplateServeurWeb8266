@@ -6,9 +6,10 @@
 #include <Arduino.h>
 
 #include "serveurWeb.hpp"
+#include "flash.hpp"
+
 // Créez un serveur sur le port 80
 ESP8266WebServer server(80);
-extern String flashFileRead (const char *filename);
 
 // Fonction pour gérer la page d'accueil
 void serveurWebHandleClient() {
