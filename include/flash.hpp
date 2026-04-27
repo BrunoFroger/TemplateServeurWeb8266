@@ -9,6 +9,6 @@
 #define __FLASH__
 
     extern void flashInit(void);
-    extern String flashFileRead (const char *filename);
+    extern String flashFileRead (const char *filename, char mode);
 
 #endif

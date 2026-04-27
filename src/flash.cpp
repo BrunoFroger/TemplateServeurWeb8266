@@ -31,7 +31,7 @@ void flashInit(void){
     }
 }
 
-String flashFileRead (const char *filename){
+String flashFileRead (const char *filename, char mode){
     String buffer = "";
     File file;
     #ifdef __DEBUG__FLASH__
@@ -42,7 +42,22 @@ String flashFileRead (const char *filename){
         Serial.println("...echec de la lecture...ce fichier existe-t-il?");
     } else {
         while (file.available()) {
-            buffer += char(file.read());
+            switch (mode) {
+                case 't':
+                case 'T':
+                    buffer += char(file.read());
+                    break;
+                case 'b':
+                case 'B':
+                    buffer += file.read();
+                    break;
+                default:
+                    Serial.printf("flashFileRead => mode %c inconnu\n", mode);
+                    break;
+            }
+            if (mode == 't'){
+                buffer += char(file.read());
+            }
         }
         #ifdef __DEBUG__FLASH__
             Serial.println("------------------------------------");

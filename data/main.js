@@ -10,13 +10,8 @@ const app = createApp({
     data() {
         return {
           currentDateTime: '',
-          // page: 'console',
-          board: null,
-          consoleDatas: "",
-          pid: undefined,
-          commande: "",
-          status: "",
-          copyright: null,
+          localButton: false,
+          remoteButton: false,
           httpServer: 'http://localhost:3000',
           // httpServer: 'http://localhost',
           // httpServer: 'http://192.168.0.8:3000',
@@ -40,6 +35,14 @@ const app = createApp({
             </tr>\
           </table>\
         </div>\
+        <div>\
+          <br> bonton avec fonction locale</br>\
+          <button v-on:click="toggleLocalButton"> {{ localButton ? "On" : "Off" }} </button> \
+        </div> \
+        <div>\
+          <br> bonton avec fonction en remote</br>\
+          <button v-on:click="toggleRemoteButton"> {{ remoteButton ? "On" : "Off" }} </button> \
+        </div> \
         <!--div>\
           <component v-bind:is="page"></component>\
         </div-->\
@@ -48,6 +51,11 @@ const app = createApp({
       updateDateTime() {
         const now = new Date();
         this.currentDateTime = now.toLocaleString();
+      },
+      toggleLocalButton() {
+        this.localButton = !this.localButton;
+      },
+      toggleRemoteButton() {
       },
     }
 });
