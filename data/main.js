@@ -12,9 +12,9 @@ const app = createApp({
           currentDateTime: '',
           localButton: false,
           remoteButton: false,
-          httpServer: 'http://localhost:3000',
+          // httpServer: 'http://localhost:3000',
           // httpServer: 'http://localhost',
-          // httpServer: 'http://192.168.0.8:3000',
+          httpServer: 'http://192.168.0.11:3000',
           // httpServer: 'http://192.168.0.8',
         }
     },
@@ -56,6 +56,19 @@ const app = createApp({
         this.localButton = !this.localButton;
       },
       toggleRemoteButton() {
+      },
+      toggleRemoteButton() {
+        let requete = this.httpServer + "/toggleRemoteButton"
+        fetch(requete).then(r => r.json()).then(response => {
+          if (response.remoteButton = "true"){
+            this.remoteButton = true;
+          } else {
+            this.remoteButton = false;
+          }
+        })
+        .catch(error => {
+          console.error(error);
+        });
       },
     }
 });

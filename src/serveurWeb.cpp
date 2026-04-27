@@ -10,6 +10,7 @@
 
 // Créez un serveur sur le port 80
 ESP8266WebServer server(80);
+bool remoteButton=false;
 
 // Fonction pour gérer les requetes au serveur
 void serveurWebHandleClient() {
@@ -52,6 +53,17 @@ void handleFavicon() {
 void handleFilenotFound() {
     Serial.println("Affichage de la page not found");
     String html = flashFileRead("pageNotFound.html",'t');
+    server.send(200, "text/html", html);
+}
+
+void handleToggleRemoteButton() {
+    Serial.println("toggle remote button");
+    String html = "remoteButton:";
+    if (remoteButton){
+        html += "true";
+    } else {
+        html += "false";
+    }
     server.send(200, "text/html", html);
 }
 
