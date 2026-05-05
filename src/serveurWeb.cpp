@@ -58,13 +58,17 @@ void handleFilenotFound() {
 
 void handleToggleRemoteButton() {
     Serial.println("toggle remote button");
-    String html = "remoteButton:";
+    // server.sendHeader("Access-Control-Allow-Origin", "http://192.168.0.11:3000/toggleRemoteButton");
+    server.sendHeader("Access-Control-Allow-Origin", "*");
+    server.sendHeader("Vary", "Origin");
+    String html = "{\"remoteButton\":";
+    remoteButton = !remoteButton;
     if (remoteButton){
-        html += "true";
+        html += "\"true\"}";
     } else {
-        html += "false";
+        html += "\"false\"}";
     }
-    server.send(200, "text/html", html);
+    server.send(200, "text/json", html);
 }
 
 void serveurWebInit(){
@@ -73,7 +77,8 @@ void serveurWebInit(){
     server.on("/style.css", handleStyleCss);
     server.on("/main.js", handleMainJs);
     server.on("/bundle.js", handleBundleJs);
-    server.on("/favicon.png", handleBundleJs);
+    server.on("/favicon.png", handleFavicon);
+    server.on("/toggleRemoteButton", handleToggleRemoteButton);
     server.onNotFound(handleFilenotFound);
 
     // Démarrer le serveur

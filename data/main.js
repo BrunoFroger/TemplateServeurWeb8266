@@ -14,8 +14,8 @@ const app = createApp({
           remoteButton: false,
           // httpServer: 'http://localhost:3000',
           // httpServer: 'http://localhost',
-          httpServer: 'http://192.168.0.11:3000',
-          // httpServer: 'http://192.168.0.8',
+          // httpServer: 'http://192.168.0.11:3000',
+          httpServer: 'http://192.168.0.11',
         }
     },
     mounted() {
@@ -56,11 +56,9 @@ const app = createApp({
         this.localButton = !this.localButton;
       },
       toggleRemoteButton() {
-      },
-      toggleRemoteButton() {
         let requete = this.httpServer + "/toggleRemoteButton"
         fetch(requete).then(r => r.json()).then(response => {
-          if (response.remoteButton = "true"){
+          if (response.remoteButton == "true"){
             this.remoteButton = true;
           } else {
             this.remoteButton = false;

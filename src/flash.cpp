@@ -6,7 +6,7 @@
 #include <Arduino.h>
 #include <LittleFS.h> 
 
-#define __DEBUG__FLASH__
+// #define __DEBUG__FLASH__
 
 void listDir() {
   Serial.println("Liste des fichiers:");
@@ -55,9 +55,9 @@ String flashFileRead (const char *filename, char mode){
                     Serial.printf("flashFileRead => mode %c inconnu\n", mode);
                     break;
             }
-            if (mode == 't'){
-                buffer += char(file.read());
-            }
+            // if (mode == 't'){
+            //     buffer += char(file.read());
+            // }
         }
         #ifdef __DEBUG__FLASH__
             Serial.println("------------------------------------");
